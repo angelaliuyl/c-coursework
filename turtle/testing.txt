@@ -1,0 +1,22 @@
+Testing:
+
+Assert tests are performed right at the beginning of main to test some of the functions. asserttest.ttl is used for this. None of the tests result in termination of the program.
+Makefile is used to save outputs for running the parser and interpreter for different files, explanation as below.
+
+test1 - should fail due to lack of { at the beginning of the file
+test2 - should parse OK with an empty program
+test3 - should fail due to undefined instruction
+test4 - should parse OK with a very long program (having to recalloc space for wds)
+test5 - should fail due to lack of varnum after instruction word
+test6 - should parse ok in parser, but fail in interpreter due to incorrect polish notation
+test7 - should parse ok in parser, but fail in interpreter due to incorrect polish notation
+test8 - should fail due to lack of ";" at the end of polish expression
+test9 - should parse ok with very long polish expression (having to recalloc space on the polstack)
+test10 - should fail due to variable not being a character A-Z
+test11 - should fail due to variable being longer than 1 character
+test12 - should parse ok in parser, but fail in interpreter due to variable not yet being set
+test13 - should parse ok
+test14 - should fail due to incorrectly formatted number
+test15 - test18 - should fail due to incorrectly formatted DO statements
+test19 - should fail due to missing } at the end of the Program
+test20 - should fail due to incorrectly formatted SET statement

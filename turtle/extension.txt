@@ -1,0 +1,30 @@
+For extension, I added conditionals to the grammar so that commands may be conditional executed. The updated grammar rules are as below.
+Conditional statements in the IF command is resolved from left to right, i.e. there are only ever a maximum of two logical expressions not resolved.
+
+Unfortunately due to the intertwined nature of parsing and interpreting in the original turtle code, I could not think of an elegant way of parsing the code within the IF command without interpreting it, so at the moment, in the interpreter mode, if the conditional statement evaluate to false, the code within is not parsed.
+
+Updated grammar for extension:
+<MAIN> ::= "{" <INSTRCTLST>
+<INSTRCTLST> ::= <INSTRUCTION><INSTRCTLST> |
+                 "}"
+<INSTRUCTION> ::= <FD> |
+                  <LT> |
+                  <RT> |
+                  <DO> |
+                  <SET> |
+                  <IF> |
+<FD> ::= "FD" <VARNUM>
+<LT> ::= "LT" <VARNUM>
+<RT> ::= "RT" <VARNUM>
+<DO> ::= "DO" <VAR> "FROM" <VARNUM> "TO"
+         <VARNUM> "{" <INSTRCTLST>
+<IF> ::= "IF" <COND> "{" <INSTRCTLST>
+<COND> ::= <LOGEXP> <LOP> <COND> | <LOGEXP> ";"
+<LOGEXP> ::= <VARNUM> <RELAT> <VARNUM> | "!" <LOGEXP>
+<LOP> ::= "&&" | "||"
+<RELAT> ::= "==" | "!=" | ">" | ">=" | "<" | "<="
+<VAR> ::= [A-Z]
+<VARNUM> ::= number | <VAR>
+<SET> ::= "SET" <VAR> ":=" <POLISH>
+<POLISH> ::= <OP> <POLISH> | <VARNUM> <POLISH> | ";"
+<OP> ::= "+" | "-" | "*" | "/"

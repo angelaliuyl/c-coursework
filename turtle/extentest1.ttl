@@ -1,0 +1,19 @@
+{
+    SET A := 5 ;
+    SET B := 5 ;
+    IF A == B ; {
+        FD 30
+    }
+    IF ! A > B ; {
+        RT 90
+        FD 50
+    }
+    IF A == B && ! A >= B ; {
+        RT 90
+        FD 30
+    }
+    IF A != 0 || B <= 10 && B < 7 ; {
+        RT 90
+        FD 20
+    }
+}
